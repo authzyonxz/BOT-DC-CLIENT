@@ -45,7 +45,6 @@ async function handleExibir(interaction) {
       '_Apenas o dono da key pode alterá-la._'
     )
     .setColor(0x5865F2)
-    .setFooter({ text: `Sistema de Keys • ${BASE_URL.replace('https://', '')}` })
     .setTimestamp();
 
   const row = new ActionRowBuilder().addComponents(
@@ -55,7 +54,8 @@ async function handleExibir(interaction) {
       .setStyle(ButtonStyle.Primary)
   );
 
-  await interaction.reply({ embeds: [embed], components: [row], ephemeral: true });
+  // Removido o ephemeral: true para o painel ser público e permanente
+  await interaction.reply({ embeds: [embed], components: [row] });
 }
 
 // ── Handler: botão → abre modal ─────────────────────────────────────────────
@@ -90,6 +90,7 @@ async function handleAbrirModal(interaction) {
 
 // ── Handler: submit do modal → chama API ────────────────────────────────────
 async function handleModalSubmit(interaction) {
+  // As respostas de processamento continuam privadas (ephemeral) para segurança
   await interaction.deferReply({ ephemeral: true });
 
   const userKey = interaction.fields.getTextInputValue('campo_key').trim();
@@ -126,8 +127,7 @@ async function handleModalSubmit(interaction) {
           { name: 'Novo IP', value: `\`${newIp}\``,  inline: true }
         )
         .setColor(0x57F287)
-        .setTimestamp()
-        .setFooter({ text: `Sistema de Keys • ${BASE_URL.replace('https://', '')}` });
+        .setTimestamp();
 
       return interaction.editReply({ embeds: [embed] });
     } else {
@@ -149,8 +149,7 @@ function errorEmbed(msg) {
     .setTitle('❌  Erro')
     .setDescription(msg)
     .setColor(0xED4245)
-    .setTimestamp()
-    .setFooter({ text: `Sistema de Keys • ${BASE_URL.replace('https://', '')}` });
+    .setTimestamp();
 }
 
 // ── Eventos do client ─────────────────────────────────────────────────────
