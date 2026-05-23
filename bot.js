@@ -3,7 +3,7 @@ const { Client, GatewayIntentBits, REST, Routes, SlashCommandBuilder, ActionRowB
 // ─── CONFIG (Usando Variáveis de Ambiente para Segurança) ────────────────────
 const TOKEN        = process.env.DISCORD_TOKEN;
 const MASTER_KEY   = process.env.MASTER_KEY;
-const BASE_URL     = process.env.BASE_URL || 'https://ruan.arifi.site';
+const BASE_URL     = process.env.BASE_URL || 'https://ruan.xarifi.com';
 const CLIENT_ID    = process.env.CLIENT_ID; 
 // ───────────────────────────────────────────────────────────────────────────
 
